@@ -3,14 +3,14 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, Trainer, Train
 import pandas as pd
 
 # Load CSV and convert to JSONL (optional)
-df = pd.read_csv("dataset/sample_data.csv")
+df = pd.read_csv("sample_data.csv")
 df = df.rename(columns={"input": "source", "output": "target"})
-df[["source", "target"]].to_json("dataset/formatted_data.json", orient="records", lines=True)
+df[["source", "target"]].to_json("formatted_data.json", orient="records", lines=True)
 
 # Load dataset
 dataset = load_dataset(
     "csv",
-    data_files="dataset/sample_data.csv",
+    data_files="sample_data.csv",
     split="train",
     column_names=["input", "output"],
     delimiter=",",
